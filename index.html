@@ -3,20 +3,25 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>Comanda</title>
-		<script type="application/javascript" src="js/linda.js"></script>
+	</head>
+	<body>
+		<div id="comanda">
+			<div id="usuarios"></div>
+		</div>
+
 		<script type="application/javascript" src="js/jQuery.js"></script>
 		<script type="application/javascript" src="js/underscore.js"></script>
 		<script type="application/javascript" src="js/backbone.js"></script>
+
+		<script type="application/javascript" src="js/roteador.js"></script>
+		<script type="application/javascript" src="js/usuarios.js"></script>
 		<script type="application/javascript" src="js/comanda.js"></script>
 		<script type="application/javascript">
 			(function (contexto) {
 				window.addEventListener("load", function () {
-					contexto.comanda = new Comanda();
+					new ComandaAplicacao();
 				});
 			}(this));
 		</script>
-	</head>
-	<body>
-		<div id="comanda"></div>
 	</body>
 </html>

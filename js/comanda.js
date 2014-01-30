@@ -1,28 +1,35 @@
 (function (contexto) {
-	contexto.Comanda = Backbone.View.extend({
-		container: "#comanda",
+	var ComandaAplicacao = function () {
+		this.inicializar();
+	};
 
-		events: {
-			"click button#iniciar": "dizerOi"
-		},
+	ComandaAplicacao.prototype.configuracoes = {
+		uriRest: "http://localhost:8081"
+	};
 
-		initialize: function () {
-			_.bindAll(this, "render", "dizerOi");
-			this.render();
-		},
+	ComandaAplicacao.prototype.inicializar = function () {
+		_.bindAll(this,
+			"rotearInicio",
+			"rotearUsuarios",
+			"obterUriRest"
+		);
+		$.ajaxPrefilter(this.obterUriRest);
+		this.roteador = new Roteador(this);
+		this.usuariosVisao = new UsuariosVisao();
+		Backbone.history.start();
+	};
 
-		render: function () {
-			var teste = Dom.$(documento).criarElemento("button");
-			teste.fixarAtributo("id", "iniciar");
-			teste.texto = "Inicializar";
-			Dom.$(this.container).adicionarNodo(teste);
-		},
+	ComandaAplicacao.prototype.rotearInicio = function () {
+		console.log("Roteador iniciado.");
+	};
 
-		dizerOi: function () {
-			console.log("LOL");
-			var teste = Dom.$(documento).criarElemento("p");
-			teste.texto = "Oi";
-			Dom.$(this.container).adicionarNodo(teste);
-		}
-	});
-}(this));
+	ComandaAplicacao.prototype.rotearUsuarios = function () {
+		this.usuariosVisao.render();
+	};
+
+	ComandaAplicacao.prototype.obterUriRest = function (opcoes) {
+		opcoes.url = (this.configuracoes.uriRest + opcoes.url);
+	};
+
+	contexto.ComandaAplicacao = ComandaAplicacao;
+}(this))
