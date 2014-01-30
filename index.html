@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="utf-8" />
+		<title>Comanda</title>
+		<script type="application/javascript" src="js/linda.js"></script>
+		<script type="application/javascript" src="js/jQuery.js"></script>
+		<script type="application/javascript" src="js/underscore.js"></script>
+		<script type="application/javascript" src="js/backbone.js"></script>
+		<script type="application/javascript" src="js/comanda.js"></script>
+		<script type="application/javascript">
+			(function (contexto) {
+				window.addEventListener("load", function () {
+					contexto.comanda = new Comanda();
+				});
+			}(this));
+		</script>
+	</head>
+	<body>
+		<div id="comanda"></div>
+	</body>
+</html>
