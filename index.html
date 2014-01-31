@@ -6,8 +6,30 @@
 	</head>
 	<body>
 		<div id="comanda">
-			<div id="usuarios"></div>
+			<div id="usuariosContainer"></div>
 		</div>
+
+		<script type="text/template" id="usuariosTemplate">
+			<h1>Usuários</h1>
+			<table>
+				<thead>
+					<tr>
+						<th>Login</th>
+						<th>Nome</th>
+						<th>Email</th>
+					</tr>
+				</thead>
+				<tbody>
+				<% _.each(usuarios, function (usuario) { %>
+					<tr>
+						<td><%= usuario.get("login") %></td>
+						<td><%= usuario.get("nome") %></td>
+						<td><%= usuario.get("email") %></td>
+					</tr>
+				<% }); %>
+				</tbody>
+			</table>
+		</script>
 
 		<script type="application/javascript" src="js/bibliotecas/jQuery.js"></script>
 		<script type="application/javascript" src="js/bibliotecas/underscore.js"></script>

@@ -15,7 +15,7 @@
 	});
 
 	var UsuariosVisao = Backbone.View.extend({
-		el: "#usuarios",
+		el: "#usuariosContainer",
 
 		initialize: function () {
 			_.bindAll(this,
@@ -32,14 +32,11 @@
 			});
 		},
 
-		obterUsuariosComSucesso: function (colecao, resposta) {
-			var menu = $("<ul />");
-			_.each(resposta, function (usuario) {
-				menu.append($("<li />", {
-					text: usuario.nome
-				}));
+		obterUsuariosComSucesso: function (usuariosColecao) {
+			var template = _.template($("#usuariosTemplate").html(), {
+				usuarios: usuariosColecao.models
 			});
-			this.$el.append(menu);
+			this.$el.html(template);
 		},
 
 		obterUsuariosComFracasso: function () {
