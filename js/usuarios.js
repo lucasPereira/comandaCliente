@@ -1,4 +1,11 @@
+/*global _*/
+/*global $*/
+/*global console*/
+/*global Backbone*/
+
 (function (contexto) {
+	"use strict";
+
 	var UsuarioModelo = Backbone.Model.extend({});
 
 	var UsuariosColecao = Backbone.Collection.extend({
@@ -25,9 +32,9 @@
 			});
 		},
 
-		obterUsuariosComSucesso: function (collection, response, options) {
+		obterUsuariosComSucesso: function (colecao, resposta) {
 			var menu = $("<ul />");
-			_.each(response, function (usuario) {
+			_.each(resposta, function (usuario) {
 				menu.append($("<li />", {
 					text: usuario.nome
 				}));
@@ -35,7 +42,7 @@
 			this.$el.append(menu);
 		},
 
-		obterUsuariosComFracasso: function (collection, response, options) {
+		obterUsuariosComFracasso: function () {
 			console.log("Fracasso");
 		}
 	});

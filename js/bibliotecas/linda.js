@@ -1197,11 +1197,14 @@
 		},
 
 		encapsular: function (elementoDom) {
+			var Notificavel = contexto.Notificavel;
+			if (Linda.instanciaDe(elementoDom, Notificavel)) {
+				return elementoDom;
+			}
 			var Documento = contexto.Documento;
 			var Elemento = contexto.Elemento;
 			var Janela = contexto.Janela;
 			var Nodo = contexto.Nodo;
-			var Notificavel = contexto.Notificavel;
 			if (Linda.instanciaDe(elementoDom, NodeList)) {
 				return new ListaDom(elementoDom);
 			} else if (Linda.instanciaDe(elementoDom, HTMLCollection)) {
@@ -1224,6 +1227,9 @@
 		},
 
 		extrair: function (suplementoDom) {
+			if (!Linda.instanciaDe(suplementoDom, contexto.Notificavel)) {
+				return suplementoDom;
+			}
 			return suplementoDom.elementoDom;
 		},
 

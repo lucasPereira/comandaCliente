@@ -1,4 +1,8 @@
+/*global Backbone*/
+
 (function (contexto) {
+	"use strict";
+
 	var Roteador = Backbone.Router.extend({
 		initialize: function (aplicacao) {
 			this.route("", "route:inicio", aplicacao.rotearInicio);

@@ -1,4 +1,13 @@
+/*global _*/
+/*global $*/
+/*global console*/
+/*global Backbone*/
+/*global Roteador*/
+/*global UsuariosVisao*/
+
 (function (contexto) {
+	"use strict";
+
 	var ComandaAplicacao = function () {
 		this.inicializar();
 	};
@@ -32,4 +41,4 @@
 	};
 
 	contexto.ComandaAplicacao = ComandaAplicacao;
-}(this))
+}(this));
