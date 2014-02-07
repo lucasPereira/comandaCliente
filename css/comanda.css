@@ -1,0 +1,5 @@
+@charset "utf-8";
+
+#comanda > div.row:first-child {
+	margin-bottom: 15px;
+}

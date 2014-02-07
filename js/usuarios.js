@@ -1,48 +1,71 @@
 /*global _*/
 /*global $*/
-/*global console*/
 /*global Backbone*/
+/*global VisaoNavegacaoSecundaria*/
 
 (function (contexto) {
 	"use strict";
 
-	var UsuarioModelo = Backbone.Model.extend({});
+	var Usuario = Backbone.Model.extend({});
 
-	var UsuariosColecao = Backbone.Collection.extend({
-		model: UsuarioModelo,
+	var Usuarios = Backbone.Collection.extend({
+		model: Usuario,
 
 		url: "/usuarios"
 	});
 
-	var UsuariosVisao = Backbone.View.extend({
-		el: "#usuariosContainer",
+	var VisaoUsuarios = Backbone.View.extend({
+		el: "#conteudoPrincipal",
 
 		initialize: function () {
+			this.usuarios = new Usuarios();
+			this.visaoNavegacaoSecundaria = new VisaoNavegacaoSecundaria();
+			this.visaoNavegacaoSecundaria.adicionarEnlace("#usuarios/cadastrar", "Cadastrar");
 			_.bindAll(this,
-				"obterUsuariosComSucesso",
-				"obterUsuariosComFracasso"
+				"render",
+				"mostrarUsuarios",
+				"mostrarErro"
 			);
 		},
 
 		render: function () {
-			var usuariosColecao = new UsuariosColecao();
-			usuariosColecao.fetch({
-				success: this.obterUsuariosComSucesso,
-				error: this.obterUsuariosComFracasso
+			this.visaoNavegacaoSecundaria.render();
+			this.usuarios.fetch({
+				success: this.mostrarUsuarios,
+				error: this.mostrarErro
 			});
 		},
 
-		obterUsuariosComSucesso: function (usuariosColecao) {
+		mostrarUsuarios: function () {
 			var template = _.template($("#usuariosTemplate").html(), {
-				usuarios: usuariosColecao.models
+				usuarios: this.usuarios.models
 			});
 			this.$el.html(template);
 		},
 
-		obterUsuariosComFracasso: function () {
-			console.log("Fracasso");
+		mostrarErro: function () {
+			var template = _.template($("#erroAoCarregarTemplate").html());
+			this.$el.html(template);
 		}
 	});
 
-	contexto.UsuariosVisao = UsuariosVisao;
+	var VisaoUsuariosCadastrar = Backbone.View.extend({
+		el: "#conteudoPrincipal",
+
+		initialize: function () {
+			this.visaoNavegacaoSecundaria = new VisaoNavegacaoSecundaria();
+			this.visaoNavegacaoSecundaria.adicionarEnlace("#usuarios", "Voltar");
+			_.bindAll(this,
+				"render"
+			);
+		},
+
+		render: function () {
+			this.visaoNavegacaoSecundaria.render();
+			this.$el.html("Formulário de cadastro.");
+		}
+	});
+
+	contexto.VisaoUsuarios = VisaoUsuarios;
+	contexto.VisaoUsuariosCadastrar = VisaoUsuariosCadastrar;
 }(this));

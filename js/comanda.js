@@ -1,9 +1,11 @@
 /*global _*/
 /*global $*/
-/*global console*/
 /*global Backbone*/
 /*global Roteador*/
-/*global UsuariosVisao*/
+/*global VisaoInicio*/
+/*global VisaoNavegacaoPrincipal*/
+/*global VisaoUsuariosCadastrar*/
+/*global VisaoUsuarios*/
 
 (function (contexto) {
 	"use strict";
@@ -12,32 +14,43 @@
 		this.inicializar();
 	};
 
-	ComandaAplicacao.prototype.configuracoes = {
-		uriRest: "http://localhost:8081"
-	};
+	ComandaAplicacao.prototype = {
+		configuracoes: {
+			uriRest: "http://localhost:8081"
+		},
 
-	ComandaAplicacao.prototype.inicializar = function () {
-		_.bindAll(this,
-			"rotearInicio",
-			"rotearUsuarios",
-			"obterUriRest"
-		);
-		$.ajaxPrefilter(this.obterUriRest);
-		this.roteador = new Roteador(this);
-		this.usuariosVisao = new UsuariosVisao();
-		Backbone.history.start();
-	};
+		inicializar: function () {
+			_.bindAll(this,
+				"rotearInicio",
+				"rotearUsuarios",
+				"rotearUsuariosCadastrar",
+				"obterUriRest"
+			);
+			$.ajaxPrefilter(this.obterUriRest);
+			this.roteador = new Roteador(this);
+			this.visaoInicio = new VisaoInicio();
+			this.visaoUsuarios = new VisaoUsuarios();
+			this.visaoUsuariosCadastrar = new VisaoUsuariosCadastrar();
+			this.visaoNavegacaoPrincipal = new VisaoNavegacaoPrincipal();
+			this.visaoNavegacaoPrincipal.render();
+			Backbone.history.start();
+		},
 
-	ComandaAplicacao.prototype.rotearInicio = function () {
-		console.log("Roteador iniciado.");
-	};
+		rotearInicio: function () {
+			this.visaoInicio.render();
+		},
 
-	ComandaAplicacao.prototype.rotearUsuarios = function () {
-		this.usuariosVisao.render();
-	};
+		rotearUsuarios: function () {
+			this.visaoUsuarios.render();
+		},
 
-	ComandaAplicacao.prototype.obterUriRest = function (opcoes) {
-		opcoes.url = (this.configuracoes.uriRest + opcoes.url);
+		rotearUsuariosCadastrar: function () {
+			this.visaoUsuariosCadastrar.render();
+		},
+
+		obterUriRest: function (opcoes) {
+			opcoes.url = (this.configuracoes.uriRest + opcoes.url);
+		}
 	};
 
 	contexto.ComandaAplicacao = ComandaAplicacao;
