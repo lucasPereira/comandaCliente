@@ -38,10 +38,53 @@
 			</nav>
 		</script>
 
-		<script type="text/template" id="erroAoCarregarTemplate">
+		<script type="text/template" id="erroGetTemplate">
 			<div class="alert alert-danger">
-				<p>Erro ao carregar o conteúdo do servidor.</p>
+				<p>Erro ao obter o recurso do servidor.</p>
 			</div>
+		</script>
+
+		<script type="text/template" id="erroPostTemplate">
+			<div class="alert alert-danger">
+				<p>Erro ao postar o recurso no servidor.</p>
+			</div>
+		</script>
+
+		<script type="text/template" id="erroPutTemplate">
+			<div class="alert alert-danger">
+				<p>Erro ao colocar o recurso no servidor.</p>
+			</div>
+		</script>
+
+		<script type="text/template" id="sucessoPutTemplate">
+			<div class="alert alert-success">
+				<p>Sucesso ao colocar o recurso no servidor.</p>
+			</div>
+		</script>
+
+		<script type="text/template" id="usuariosCadastrarTemplate">
+			<form>
+				<div class="form-group">
+					<label for="nome" class="sr-only">nome</label>
+					<input name="nome" type="text" class="nome form-control" placeholder="nome" />
+				</div>
+				<div class="form-group">
+					<label for="login" class="sr-only">login</label>
+					<input name="login" type="text" class="login form-control" placeholder="login" />
+				</div>
+				<div class="form-group">
+					<label for="email" class="sr-only">email</label>
+					<input name="email" type="email" class="email form-control" placeholder="email" />
+				</div>
+				<div class="form-group">
+					<label for="senha" class="sr-only">senha</label>
+					<input name="senha" type="password" class="senha form-control" placeholder="senha" />
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-success">Cadstrar</button>
+				</div>
+			</form>
+			<div class="mensagem"></div>
 		</script>
 
 		<script type="text/template" id="usuariosTemplate">
@@ -66,6 +109,29 @@
 			</table>
 		</script>
 
+		<script type="text/template" id="usuarioTemplate">
+			<h1>Usuário</h1>
+			<form>
+				<div class="form-group">
+					<label for="nome" class="sr-only">nome</label>
+					<input value="<%= usuario.get('nome') %>" name="nome" type="text" class="nome form-control" placeholder="nome" />
+				</div>
+				<div class="form-group">
+					<label for="login" class="sr-only">login</label>
+					<input value="<%= usuario.get('login') %>" name="login" type="text" class="login form-control" placeholder="login" />
+				</div>
+				<div class="form-group">
+					<label for="email" class="sr-only">email</label>
+					<input value="<%= usuario.get('email') %>" name="email" type="email" class="email form-control" placeholder="email" />
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-success">Salvar</button>
+				</div>
+			</form>
+			<div class="mensagem"></div>
+		</script>
+
+
 		<script type="application/javascript" src="js/bibliotecas/jQuery.js"></script>
 		<script type="application/javascript" src="js/bibliotecas/bootstrap.js"></script>
 		<script type="application/javascript" src="js/bibliotecas/underscore.js"></script>
@@ -73,6 +139,7 @@
 
 		<script type="application/javascript" src="js/roteador.js"></script>
 		<script type="application/javascript" src="js/navegacao.js"></script>
+		<script type="application/javascript" src="js/sistema.js"></script>
 		<script type="application/javascript" src="js/inicio.js"></script>
 		<script type="application/javascript" src="js/usuarios.js"></script>
 		<script type="application/javascript" src="js/comanda.js"></script>

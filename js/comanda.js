@@ -24,32 +24,39 @@
 				"rotearInicio",
 				"rotearUsuarios",
 				"rotearUsuariosCadastrar",
+				"ativarRota",
 				"obterUriRest"
 			);
 			$.ajaxPrefilter(this.obterUriRest);
 			this.roteador = new Roteador(this);
-			this.visaoInicio = new VisaoInicio();
-			this.visaoUsuarios = new VisaoUsuarios();
-			this.visaoUsuariosCadastrar = new VisaoUsuariosCadastrar();
 			this.visaoNavegacaoPrincipal = new VisaoNavegacaoPrincipal();
 			this.visaoNavegacaoPrincipal.render();
+			this.ativo = null;
 			Backbone.history.start();
 		},
 
 		rotearInicio: function () {
-			this.visaoInicio.render();
+			this.ativarRota(new VisaoInicio());
 		},
 
 		rotearUsuarios: function () {
-			this.visaoUsuarios.render();
+			this.ativarRota(new VisaoUsuarios());
 		},
 
 		rotearUsuariosCadastrar: function () {
-			this.visaoUsuariosCadastrar.render();
+			this.ativarRota(new VisaoUsuariosCadastrar());
 		},
 
 		obterUriRest: function (opcoes) {
 			opcoes.url = (this.configuracoes.uriRest + opcoes.url);
+		},
+
+		ativarRota: function (rota) {
+			if (this.ativo != null) {
+				this.ativo.undelegateEvents();
+			}
+			this.ativo = rota;
+			this.ativo.render();
 		}
 	};
 
