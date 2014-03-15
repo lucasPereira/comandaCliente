@@ -5,148 +5,26 @@
 		<title>Comanda</title>
 		<link type="text/css" href="css/bootstrap.css" rel="stylesheet" />
 		<link type="text/css" href="css/comanda.css" rel="stylesheet" />
+		<link type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 	</head>
 	<body>
-		<div id="comanda" class="container-fluid">
-			<div class="row">
-				<div id="navegacaoPrincipal" class="col-md-12"></div>
-			</div>
-			<div class="row">
-				<div id="navegacaoSecundaria" class="col-md-8"></div>
-			</div>
-			<div class="row">
-				<div id="conteudoPrincipal" class="col-md-8"></div>
-				<div id="conteudoSecundario" class="col-md-4"></div>
-			</div>
+		<div id="comanda">
+			<div id="navegacao"></div>
+			<div id="conteudo"></div>
 		</div>
-
-		<script type="text/template" id="navegacaoPrincipalTemplate">
-			<ul class="nav nav-tabs">
-				<% _.each(itens, function (item) { %>
-					<li><a href="<%= item.get('uri') %>"><%= item.get('nome') %></a></li>
-				<% }); %>
-			</ul>
-		</script>
-
-		<script type="text/template" id="navegacaSecundariaTemplate">
-			<nav class="navbar navbar-default"  role="navigation">
-				<ul class="nav navbar-nav">
-					<% _.each(itens, function (item) { %>
-						<li><a href="<%= item.get('uri') %>"><%= item.get('nome') %></a></li>
-					<% }); %>
-				</ul>
-			</nav>
-		</script>
-
-		<script type="text/template" id="erroGetTemplate">
-			<div class="alert alert-danger">
-				<p>Erro ao obter o recurso do servidor.</p>
-			</div>
-		</script>
-
-		<script type="text/template" id="erroPostTemplate">
-			<div class="alert alert-danger">
-				<p>Erro ao postar o recurso no servidor.</p>
-			</div>
-		</script>
-
-		<script type="text/template" id="erroPutTemplate">
-			<div class="alert alert-danger">
-				<p>Erro ao colocar o recurso no servidor.</p>
-			</div>
-		</script>
-
-		<script type="text/template" id="sucessoPutTemplate">
-			<div class="alert alert-success">
-				<p>Sucesso ao colocar o recurso no servidor.</p>
-			</div>
-		</script>
-
-		<script type="text/template" id="usuariosCadastrarTemplate">
-			<form>
-				<div class="form-group">
-					<label for="nome" class="sr-only">nome</label>
-					<input name="nome" type="text" class="nome form-control" placeholder="nome" />
-				</div>
-				<div class="form-group">
-					<label for="login" class="sr-only">login</label>
-					<input name="login" type="text" class="login form-control" placeholder="login" />
-				</div>
-				<div class="form-group">
-					<label for="email" class="sr-only">email</label>
-					<input name="email" type="email" class="email form-control" placeholder="email" />
-				</div>
-				<div class="form-group">
-					<label for="senha" class="sr-only">senha</label>
-					<input name="senha" type="password" class="senha form-control" placeholder="senha" />
-				</div>
-				<div class="form-group">
-					<button type="submit" class="btn btn-success">Cadstrar</button>
-				</div>
-			</form>
-			<div class="mensagem"></div>
-		</script>
-
-		<script type="text/template" id="usuariosTemplate">
-			<h1>Usuários</h1>
-			<table class="table table-hover table-striped">
-				<thead>
-					<tr>
-						<th>Login</th>
-						<th>Nome</th>
-						<th>Email</th>
-					</tr>
-				</thead>
-				<tbody>
-				<% _.each(usuarios, function (usuario) { %>
-					<tr>
-						<td><%= usuario.get('login') %></td>
-						<td><%= usuario.get('nome') %></td>
-						<td><%= usuario.get('email') %></td>
-					</tr>
-				<% }); %>
-				</tbody>
-			</table>
-		</script>
-
-		<script type="text/template" id="usuarioTemplate">
-			<h1>Usuário</h1>
-			<form>
-				<div class="form-group">
-					<label for="nome" class="sr-only">nome</label>
-					<input value="<%= usuario.get('nome') %>" name="nome" type="text" class="nome form-control" placeholder="nome" />
-				</div>
-				<div class="form-group">
-					<label for="login" class="sr-only">login</label>
-					<input value="<%= usuario.get('login') %>" name="login" type="text" class="login form-control" placeholder="login" />
-				</div>
-				<div class="form-group">
-					<label for="email" class="sr-only">email</label>
-					<input value="<%= usuario.get('email') %>" name="email" type="email" class="email form-control" placeholder="email" />
-				</div>
-				<div class="form-group">
-					<button type="submit" class="btn btn-success">Salvar</button>
-				</div>
-			</form>
-			<div class="mensagem"></div>
-		</script>
-
 
 		<script type="application/javascript" src="js/bibliotecas/jQuery.js"></script>
 		<script type="application/javascript" src="js/bibliotecas/bootstrap.js"></script>
 		<script type="application/javascript" src="js/bibliotecas/underscore.js"></script>
 		<script type="application/javascript" src="js/bibliotecas/backbone.js"></script>
 
-		<script type="application/javascript" src="js/roteador.js"></script>
-		<script type="application/javascript" src="js/navegacao.js"></script>
-		<script type="application/javascript" src="js/sistema.js"></script>
-		<script type="application/javascript" src="js/inicio.js"></script>
-		<script type="application/javascript" src="js/usuarios.js"></script>
 		<script type="application/javascript" src="js/comanda.js"></script>
+		<script type="application/javascript" src="js/inicio.js"></script>
+		<script type="application/javascript" src="js/roteador.js"></script>
 		<script type="application/javascript">
 			(function (contexto) {
 				window.addEventListener("load", function () {
-					new ComandaAplicacao();
+					new Roteador();
 				});
 			}(this));
 		</script>

@@ -1,9 +1,72 @@
 @charset "utf-8";
-
-#comanda > div.row:first-child {
-	margin-bottom: 15px;
-}
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300);
 
 #comanda {
-	margin-top: 15px;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: stretch;
+}
+
+#inicio {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: stretch;
+}
+
+#inicio .apresentacao {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+	background-color: #F25E46;
+	color: #C93F32;
+	padding: 50px;
+}
+
+#inicio .apresentacao h2 {
+	color: #FFF;
+	background-color: #E2543E;
+	font-family: "Open Sans", Sans-Serif;
+	font-weight: 300;
+	padding: 30px 50px;
+	text-transform: uppercase;
+}
+
+#inicio .funcionalidades {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	align-content: flex-start
+	color: #FFF;
+	font-family: "Open Sans", Sans-Serif;
+	font-weight: 400;
+}
+
+#inicio .funcionalidades i {
+	display: block;
+}
+
+#inicio .funcionalidades li {
+	list-style-type: none;
+	text-align: center;
+}
+
+#inicio .funcionalidades li a {
+	color: #C93F32;
+	display: block;
+	padding: 50px;
+	text-decoration: none;
+}
+
+#inicio .funcionalidades li a:focus,
+#inicio .funcionalidades li a:hover {
+	background-color: #C93F32;
+	color: #FFF;
 }

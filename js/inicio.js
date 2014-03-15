@@ -1,25 +1,21 @@
 /*global _*/
-/*global Backbone*/
-/*global VisaoNavegacaoSecundaria*/
+/*global VisaoConteudo*/
+/*global VisaoNavegacao*/
 
 (function (contexto) {
 	"use strict";
 
-	var VisaoInicio = Backbone.View.extend({
-		el: "#conteudoPrincipal",
+	var VisaoConteudoInicio = VisaoConteudo.extend({
+		el: "#conteudo",
 
-		initialize: function () {
-			this.visaoNavegacaoSecundaria = new VisaoNavegacaoSecundaria();
-			_.bindAll(this,
-				"render"
-			);
-		},
-
-		render: function () {
-			this.visaoNavegacaoSecundaria.render();
-			this.$el.html("Bem vindo ao Comanda.");
+		render: function (inicio) {
+			var template = _.template(inicio);
+			this.$el.html(template());
 		}
 	});
 
-	contexto.VisaoInicio = VisaoInicio;
+	var VisaoNavegacaoInicio = VisaoNavegacao.extend({});
+
+	contexto.VisaoConteudoInicio = VisaoConteudoInicio;
+	contexto.VisaoNavegacaoInicio = VisaoNavegacaoInicio;
 }(this));
