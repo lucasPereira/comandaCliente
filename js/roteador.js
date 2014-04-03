@@ -1,8 +1,10 @@
 /*global _*/
 /*global $*/
 /*global Backbone*/
-/*global VisaoConteudoInicio*/
+/*global VisaoInicio*/
 /*global VisaoNavegacaoInicio*/
+/*global VisaoCardapio*/
+/*global VisaoNavegacaoCardapio*/
 
 (function (contexto) {
 	"use strict";
@@ -15,6 +17,7 @@
 		initialize: function () {
 			_.bindAll(this,
 				"rotearInicio",
+				"rotearCardapio",
 				"obterUriRest"
 			);
 			this.inicializarRoteamentos();
@@ -26,6 +29,7 @@
 		inicializarRoteamentos: function() {
 			this.route("", "route:inicio", this.rotearRaiz);
 			this.route("inicio", "route:inicio", this.rotearInicio);
+			this.route("cardapio", "route:cardapio", this.rotearCardapio);
 		},
 
 		inicializarConfiguracoes: function () {
@@ -38,16 +42,23 @@
 		},
 
 		rotearInicio: function () {
-			this.alterarTela(new VisaoConteudoInicio());
+			this.alterarTela(new VisaoInicio());
 			this.alterarNavegacao(new VisaoNavegacaoInicio());
 		},
 
+		rotearCardapio: function () {
+			this.alterarTela(new VisaoCardapio());
+			this.alterarNavegacao(new VisaoNavegacaoCardapio());
+		},
+
 		alterarNavegacao: function(visaoNavegacao) {
-			if (this.visaoNavegacao) {
-				this.visaoNavegacao.remove();
-			}
-			this.visaoNavegacao = visaoNavegacao;
-			this.visaoNavegacao.render();
+			$.get("tpl/navegacao.tpl", function (template) {
+				if (this.visaoNavegacao) {
+					this.visaoNavegacao.remove();
+				}
+				this.visaoNavegacao = visaoNavegacao;
+				this.visaoNavegacao.render(template);
+			});
 		},
 
 		alterarTela: function(visaoConteudo) {

@@ -1,21 +1,19 @@
 /*global _*/
 /*global VisaoConteudo*/
-/*global VisaoNavegacao*/
+/*global VisaoNavegacaoVazia*/
 
 (function (contexto) {
 	"use strict";
 
-	var VisaoConteudoInicio = VisaoConteudo.extend({
-		el: "#conteudo",
-
+	var VisaoInicio = VisaoConteudo.extend({
 		render: function (inicio) {
 			var template = _.template(inicio);
 			this.$el.html(template());
 		}
 	});
 
-	var VisaoNavegacaoInicio = VisaoNavegacao.extend({});
+	var VisaoNavegacaoInicio = VisaoNavegacaoVazia.extend({});
 
-	contexto.VisaoConteudoInicio = VisaoConteudoInicio;
+	contexto.VisaoInicio = VisaoInicio;
 	contexto.VisaoNavegacaoInicio = VisaoNavegacaoInicio;
 }(this));
