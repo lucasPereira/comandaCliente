@@ -73,7 +73,7 @@
 
 		obterUriTemplate: function () {
 			var uri = Backbone.history.fragment;
-			var template = "tpl/" + uri + ".tpl";
+			var template = ("tpl/" + uri + ".tpl");
 			return template;
 		},
 

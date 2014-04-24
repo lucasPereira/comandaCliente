@@ -23,24 +23,24 @@
 		},
 
 		obterCategorias: function () {
-			new ColecaoCategorias().fetch({
+			this.colecaoCategorias = new ColecaoCategorias();
+			this.colecaoCategorias.fetch({
 				success: this.receberCategorias
 			});
 		},
 
-		receberCategorias: function (a, b, c) {
-			console.log(a);
-			console.log(b);
-			console.log(c);
-			a.each(function (categoria) {
-				console.log(categoria);
-			});
+		receberCategorias: function (evento, categorias) {
+			var template = _.template(this.templateCardapio);
+			console.log(this.colecaoCategorias.models);
+			console.log(categorias);
+			this.$el.html(template({
+				categorias: categorias
+			}));
 		},
 
-		render: function (cardapio) {
-			var categorias = this.obterCategorias();
-			var template = _.template(cardapio);
-			this.$el.html(template());
+		render: function (templateCardapio) {
+			this.templateCardapio = templateCardapio;
+			this.obterCategorias();
 		}
 	});
 
@@ -49,7 +49,6 @@
 			this.fixarTitulo("Cardápio");
 		}
 	});
-
 
 	contexto.VisaoCardapio = VisaoCardapio;
 	contexto.VisaoNavegacaoCardapio = VisaoNavegacaoCardapio;
